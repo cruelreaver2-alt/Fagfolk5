@@ -1,0 +1,153 @@
+@import "./tailwind.css";
+@import "./theme.css";
+
+/* ======================
+   MOBILE OPTIMIZATIONS
+   ====================== */
+
+/* Smooth scrolling for horizontal carousels */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Better touch scrolling on mobile - iOS momentum scrolling */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure text is readable on mobile */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent horizontal scroll on mobile */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Better input focus on mobile - iOS Safari zoom prevention */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  ring-width: 2px;
+}
+
+/* Prevent zoom on iOS when focusing inputs with font-size < 16px */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
+}
+
+/* Touch-friendly button/link states */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Better tap areas - minimum 44x44px (Apple HIG) / 48x48px (Material Design) */
+button,
+a,
+[role="button"] {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* Smooth scroll behavior for all platforms */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent pull-to-refresh on mobile when scrolling down */
+body {
+  overscroll-behavior-y: contain;
+}
+
+/* Safe area insets for iOS notch/home indicator */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Improve text rendering on high-DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Mobile-specific utilities */
+@media (max-width: 768px) {
+  /* Larger touch targets on mobile */
+  .mobile-touch-target {
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  /* Better spacing on mobile */
+  .mobile-spacing {
+    padding: 1rem;
+  }
+
+  /* Full-width buttons on mobile */
+  .mobile-full-width {
+    width: 100%;
+  }
+}
+
+/* Prevent text size adjustment on iOS landscape */
+@media screen and (orientation: landscape) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* Better form controls on mobile */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 8px;
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix for iOS Safari address bar height changes */
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  html {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Android Chrome specific fixes */
+@supports not (-webkit-touch-callout: none) {
+  /* Better scroll performance on Android */
+  * {
+    will-change: auto;
+  }
+}
